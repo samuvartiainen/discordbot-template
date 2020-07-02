@@ -1,4 +1,6 @@
 const Discord = require('discord.js');
+const Commando = require('discord.js-commando');
+const bot = new commando.Client();
 const client = new Discord.Client();
  
 const prefix = '-';
@@ -27,6 +29,10 @@ client.on('message', message =>{
  
     if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
+    }
+
+    else if(command === 'join'){
+        client.commands.get('join').execute(message, args);
     }
 });
 // THIS  MUST  BE  THIS  WAY
