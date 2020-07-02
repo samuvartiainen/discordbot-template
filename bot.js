@@ -6,7 +6,10 @@ const client = new Discord.Client();
 const prefix = '-';
  
 const fs = require('fs');
- 
+bot.registry.registerGroup('music', 'Music');
+bot.registry.registerDefaults();
+bot.registry.registerCommandsIn(__dirname + '/commands');
+/*
 bot.commands = new Discord.Collection();
  
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -15,9 +18,9 @@ for(const file of commandFiles){
  
     bot.commands.set(command.name, command);
 }
+ */
  
- 
-bot.once('ready', () => {
+bot.on('ready', () => {
     console.log('ValBot is online!');
 });
  
