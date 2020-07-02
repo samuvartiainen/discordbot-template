@@ -29,9 +29,9 @@ client.on('message', message =>{
         client.commands.get('ping').execute(message, args);
     }
 
-    // else if(command === 'join'){
-     //   client.commands.get('join').execute(message, args);
-    //  }
+    else if(command === 'join'){
+        client.commands.get('ping').execute(message, args);
+    }
 });
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
