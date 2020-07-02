@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const Commando = require('discord.js-commando');
-const bot = new commando.Client();
+const bot = new Commando.Client();
 const client = new Discord.Client();
- 
+const path = require('path');
 const prefix = '-';
  
 const fs = require('fs');
 bot.registry.registerGroup('music', 'Music');
 bot.registry.registerDefaults();
-bot.registry.registerCommandsIn(__dirname + '/commands');
+bot.registry.registerCommandsIn(path.join(__dirname, '/commands'));
 /*
 bot.commands = new Discord.Collection();
  
