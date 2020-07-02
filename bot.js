@@ -16,7 +16,7 @@ for(const file of commandFiles){
  
  
 client.once('ready', () => {
-    console.log('ValBot is online!');
+    message.channel.send('My body is ready!');
 });
  
 client.on('message', message =>{
@@ -30,7 +30,7 @@ client.on('message', message =>{
     }
 
     else if(command === 'join'){
-        client.commands.get('ping').execute(message, args);
+        client.commands.get('join').execute(message, args);
     }
 });
 // THIS  MUST  BE  THIS  WAY
