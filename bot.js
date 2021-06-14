@@ -14,11 +14,13 @@ for(const file of commandFiles){
  
     client.commands.set(command.name, command);
 }
- 
+
+/*
 client.once('ready', () => {
     message.channel.send('My body is ready!');
 });
- 
+*/
+
 client.on('message', message =>{
     if(!message.content.startsWith(prefix) || message.author.bot) return;
  
