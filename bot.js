@@ -15,11 +15,9 @@ for(const file of commandFiles){
     client.commands.set(command.name, command);
 }
 
-/*
 client.once('ready', () => {
     message.channel.send('My body is ready!');
 });
-*/
 
 client.on('message', message =>{
     if(!message.content.startsWith(prefix) || message.author.bot) return;
@@ -36,4 +34,4 @@ client.on('message', message =>{
     }
 });
 // THIS  MUST  BE  THIS  WAY
-client.login(process.env.TOKEN);
+client.login(process.env.BOT_TOKEN);
