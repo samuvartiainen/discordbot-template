@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
- 
+const dotenv = require('dotenv');
+dotenv.config();
 const prefix = '-';
  
 const fs = require('fs');
@@ -13,7 +14,6 @@ for(const file of commandFiles){
  
     client.commands.set(command.name, command);
 }
- 
  
 client.once('ready', () => {
     message.channel.send('My body is ready!');
@@ -34,4 +34,4 @@ client.on('message', message =>{
     }
 });
 // THIS  MUST  BE  THIS  WAY
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.TOKEN);
