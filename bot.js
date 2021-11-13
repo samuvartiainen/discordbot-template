@@ -1,39 +1,36 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 dotenv.config();
-const prefix = '-';
- 
 const fs = require('fs');
- 
-client.commands = new Discord.Collection();
- 
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-for(const file of commandFiles){
-    const command = require(`./commands/${file}`);
- 
-    client.commands.set(command.name, command);
-}
+const client = new Client({
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES]},
+);
 
-/*
+// client.commands = new Collection();
+// const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+// for (const file of commandFiles) {
+// 	const command = require(`./commands/${file}`);
+// 	client.commands.set(command.data.name, command);
+// }
+
 client.once('ready', () => {
-    message.channel.send('My body is ready!');
+	console.log('On');
 });
-*/
 
-client.on('message', message =>{
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
- 
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
- 
-    if(command === 'ping'){
-        client.commands.get('ping').execute(message, args);
-    }
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
 
-    else if(command === 'join'){
-        client.commands.get('join').execute(message, args);
-    }
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'server') {
+		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+	} else if (commandName === 'user') {
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+	}
 });
-// THIS  MUST  BE  THIS  WAY
+
+// Don't leak your BOT_TOKEN!
 client.login(process.env.BOT_TOKEN);
